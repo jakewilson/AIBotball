@@ -46,6 +46,16 @@ void moveDiagonally(int n) {
 }
 
 /*
+ * Uses the light sensor on port LIGHT_SENSOR and returns whether it was light or dark.
+ * Light is defined by: x < 980
+ * Dark is defined by: x >= 980
+ * @return LIGHT or DARK, depending on the sensor input.
+ */
+int senseBrightness() {
+	return analog10(LIGHT_SENSOR) > 980 ? DARK : LIGHT;
+}
+
+/*
  * Stops the motor opposite to the direction to turn, then turns it back
  * to full speed
  * @param dir: the direction in which to turn the robot - use macros LEFT or RIGHT

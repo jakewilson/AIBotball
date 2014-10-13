@@ -3,8 +3,13 @@
  * and moving the servo forward and backwards.
  */
 
-#define LEFT_MOTOR  3
-#define RIGHT_MOTOR 1
+
+/* Ports */
+#define LEFT_MOTOR   3
+#define RIGHT_MOTOR  1
+#define SERVO_PORT   2
+#define LIGHT_SENSOR 5
+
 #define SPEED -800
 #define TURN_SPEED -400
 
@@ -23,11 +28,14 @@
 #define LEFT  0
 #define RIGHT 2
 
-#define SERVO_PORT 2
+/* Light Sensor Values */
+#define LIGHT 0
+#define DARK 1
 
 void move(int n);
 void moveDiagonally(int n);
 void turn(int dir, int deg);
 void servoForwards();
 void servoBackward();
+int senseBrightness();
 
