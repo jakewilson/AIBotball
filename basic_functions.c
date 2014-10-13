@@ -26,6 +26,16 @@ void move(int n) {
 }
 
 /*
+ * Moves the robot backwards by n amount of cells at SPEED
+ * @param n: the number of cells to move
+ */
+void moveBackwards(int n) {
+	mav(RIGHT_MOTOR, -SPEED);
+	mav(LEFT_MOTOR, -SPEED);
+	msleep(n * CELL_TIME);
+}
+
+/*
  * Moves the robot forward by n amount of cells at SPEED
  * @param n: the number of cells to move
  */
