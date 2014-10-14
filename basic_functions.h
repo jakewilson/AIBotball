@@ -1,6 +1,9 @@
 /*
  * Simple API for moving the robot, moving the robot diagonally, turning the robot,
  * and moving the servo forward and backwards.
+ *
+ * @author: Jake Wilson
+ * @date: 10/12/2014
  */
 
 
@@ -10,19 +13,23 @@
 #define SERVO_PORT   2
 #define LIGHT_SENSOR 5
 
+/* Speeds */
 #define SPEED -800
 #define TURN_SPEED -400
 
-/* the time it takes to traverse one cell at speed SPEED */
+/* the time it takes to traverse one cell at speed 800 */
 #define CELL_TIME 1100
 
-/* Turn degrees. Values are the number of seconds to turn*/
+/* Turn degrees. Values are the number of seconds to turn */
 #define DEGREE_90 1850
 #define DEGREE_45 (DEGREE_90 / 2)
 #define DEGREE_180 (DEGREE_90 * 2)
 
 /* The amount to increase the servo position by */
 #define SERVO_INC 250
+
+/* The middle position of the servo */
+#define SERVO_MIDDLE 1024
 
 /* Turn directions */
 #define LEFT  0
@@ -32,6 +39,8 @@
 #define LIGHT 0
 #define DARK 1
 
+
+/* Functions */
 void move(int n);
 void moveDiagonally(int n);
 void turn(int dir, int deg);

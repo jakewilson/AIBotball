@@ -5,7 +5,7 @@
  */
 int main() {
 	enable_servos();
-	set_servo_position(SERVO_PORT, 1024); // set servo in the middle
+	set_servo_position(SERVO_PORT, SERVO_MIDDLE);
 	move(1);
 	servoForwards();
 	turn(RIGHT, DEGREE_45);
