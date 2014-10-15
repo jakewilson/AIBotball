@@ -3,7 +3,7 @@
 /*
  * First challenge in the botball tournament round 2
  */
-int main() {
+/*int main() {
 	enable_servos();
 	set_servo_position(SERVO_PORT, SERVO_MIDDLE);
 	move(1);
@@ -14,4 +14,4 @@ int main() {
 	moveDiagonally(1);
 	ao();
 	return 0;
-}
+}*/

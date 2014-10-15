@@ -11,7 +11,9 @@
 #define LEFT_MOTOR   3
 #define RIGHT_MOTOR  1
 #define SERVO_PORT   2
-#define LIGHT_SENSOR 5
+
+#define LIGHT_SENSOR_R 0
+#define LIGHT_SENSOR_L 5
 
 /* Speeds */
 #define SPEED -800
@@ -20,8 +22,13 @@
 /* the time it takes to traverse one cell at speed 800 */
 #define CELL_TIME 1100
 
+#define CELL_SIZE -800
+
 /* Turn degrees. Values are the number of seconds to turn */
 #define DEGREE_90 1850
+#define DEGREE_10 (DEGREE_90 / 10)
+#define DEGREE_5 (DEGREE_10 / 2)
+#define DEGREE_2_P_5 (DEGREE_5 / 2)
 #define DEGREE_45 (DEGREE_90 / 2)
 #define DEGREE_180 (DEGREE_90 * 2)
 
@@ -38,6 +45,10 @@
 /* Light Sensor Values */
 #define LIGHT 0
 #define DARK 1
+
+/* Boolean Values */
+#define TRUE  1
+#define FALSE 0
 
 
 /* Functions */
