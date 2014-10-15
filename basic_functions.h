@@ -58,4 +58,5 @@ void turn(int dir, int deg);
 void servoForwards();
 void servoBackward();
 int senseBrightness();
+int onEdge();
 
