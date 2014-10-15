@@ -2,6 +2,57 @@
 #include <math.h>
 
 /*
+ * Returns the color seen by the camera
+ * @return: either RED, GREEN, PURPLE, or WHITE
+ */
+int getColor(){
+   int numChannels = 4;
+   int i;
+	int maxSum = 0; 
+	int maxIndex = -1;
+	int objCount=-1;
+	int sum=0;
+	int counts[4]={0,0,0,0};
+	int k;
+	int j;
+   
+   while(maxIndex==-1){
+			camera_update(); //intake color
+			for(k=0;k<7;k++){
+				for(i = 0; i < numChannels; i++)
+				{
+				
+					if((objCount=get_object_count(i))>0)//if there is an object of that color seen
+					{	
+						for(j=0; j<objCount;j++){
+						sum=get_object_area(i,j)+sum;
+						}
+				
+						if(sum>maxSum){
+							maxSum=sum;
+							maxIndex=i;
+						}
+						sum=0;
+					}
+				}
+				if(maxIndex>=0){
+					counts[maxIndex]++;
+				}
+				maxSum = 0;
+			}
+			for(k=0;k<4;k++){
+				if(maxSum<counts[k]){
+					maxSum=counts[k];
+					maxIndex=k;
+				}
+			}
+			maxSum=0;
+		}
+		printf("The color is %d\n",maxIndex);
+      return maxIndex;
+   }
+
+/*
  * Moves the servo backward(s)
  */
 void servoBackwards() {
@@ -16,11 +67,15 @@ void servoForwards() {
 }
 
 /*
- * Returns TRUE if the robot has reached the edge of the map, FALSE if not.
+ * If both light sensors see DARK and they still see DARK 50 ms later, then we're on the edge.
  * @return: TRUE if the robot has reached the edge of the map, FALSE if not.
  */
 int onEdge() {
-	return senseBrightness(LIGHT_SENSOR_R) == DARK && senseBrightness(LIGHT_SENSOR_L) == DARK;
+	if (senseBrightness(LIGHT_SENSOR_R) == DARK && senseBrightness(LIGHT_SENSOR_L) == DARK) {
+		msleep(35);
+		return senseBrightness(LIGHT_SENSOR_R) == DARK && senseBrightness(LIGHT_SENSOR_L) == DARK;
+	}
+	return FALSE;
 }
 
 /*
@@ -30,10 +85,10 @@ int onEdge() {
  */
 void correctCourse() {
 	if (senseBrightness(LIGHT_SENSOR_R) == DARK && senseBrightness(LIGHT_SENSOR_L) == LIGHT) {
-		turn(LEFT, DEGREE_2_P_5);
+		turn(LEFT, DEGREE_5);
 	} else 
 		if (senseBrightness(LIGHT_SENSOR_R) == LIGHT && senseBrightness(LIGHT_SENSOR_L) == DARK) {
-			turn(RIGHT, DEGREE_2_P_5);
+			turn(RIGHT, DEGREE_5);
 		}
 }
 
@@ -41,15 +96,17 @@ void correctCourse() {
  * Moves the robot forward by n amount of cells at SPEED
  * @param n: the number of cells to move
  */
-void move(int n) {
+void move() {
     mav(RIGHT_MOTOR, SPEED);
     mav(LEFT_MOTOR, SPEED);
 	clear_motor_position_counter(RIGHT_MOTOR);
-	while (get_motor_position_counter(RIGHT_MOTOR) > (n * CELL_SIZE)) {
+	int time = 0;
+	while (time < CELL_TIME) {
 		correctCourse();
 		mav(RIGHT_MOTOR, SPEED);
 		mav(LEFT_MOTOR, SPEED);
-		msleep(100);
+		msleep(150);
+		time += 150;
 	}
 }
 

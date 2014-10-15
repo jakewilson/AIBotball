@@ -16,7 +16,7 @@
 #define LIGHT_SENSOR_L 5
 
 /* Speeds */
-#define SPEED -800
+#define SPEED -700
 #define TURN_SPEED -400
 
 /* the time it takes to traverse one cell at speed 800 */
@@ -25,7 +25,7 @@
 #define CELL_SIZE -800
 
 /* Turn degrees. Values are the number of seconds to turn */
-#define DEGREE_90 1850
+#define DEGREE_90 1750
 #define DEGREE_10 (DEGREE_90 / 10)
 #define DEGREE_5 (DEGREE_10 / 2)
 #define DEGREE_2_P_5 (DEGREE_5 / 2)
@@ -50,13 +50,19 @@
 #define TRUE  1
 #define FALSE 0
 
+/* Color Values */
+#define RED    0
+#define GREEN  1
+#define PURPLE 2
+#define WHITE  3
+
 
 /* Functions */
-void move(int n);
+void move();
 void moveDiagonally(int n);
 void turn(int dir, int deg);
 void servoForwards();
 void servoBackward();
 int senseBrightness();
 int onEdge();
-
+int getColor();
