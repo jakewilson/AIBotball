@@ -30,11 +30,9 @@ int onEdge() {
  */
 void correctCourse() {
 	if (senseBrightness(LIGHT_SENSOR_R) == DARK && senseBrightness(LIGHT_SENSOR_L) == LIGHT) {
-		printf("Turning left\n");
 		turn(LEFT, DEGREE_2_P_5);
 	} else 
 		if (senseBrightness(LIGHT_SENSOR_R) == LIGHT && senseBrightness(LIGHT_SENSOR_L) == DARK) {
-			printf("Turning right\n");
 			turn(RIGHT, DEGREE_2_P_5);
 		}
 }
@@ -51,7 +49,6 @@ void move(int n) {
 		correctCourse();
 		mav(RIGHT_MOTOR, SPEED);
 		mav(LEFT_MOTOR, SPEED);
-		printf("position: %d\n", get_motor_position_counter(RIGHT_MOTOR));
 		msleep(100);
 	}
 }
